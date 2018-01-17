@@ -32,7 +32,7 @@ int main()
 	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
 	ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
 
-	ResourceManager::LoadTexture("Assets/Textures/awesomeface.png", GL_TRUE, "face");
+	ResourceManager::LoadTexture("Assets/Textures/background.png", GL_TRUE, "background");
 
 	SpriteRenderer* renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
 	PostProcessor* pp = new PostProcessor(ResourceManager::GetShader("postprocessing"), Engine::SCREEN_WIDTH, Engine::SCREEN_HEIGHT);
@@ -45,7 +45,7 @@ int main()
 		engine.Update();
 		im.Update();
 		pp->BeginRender();
-		renderer->DrawSprite(ResourceManager::GetTexture("face"), glm::vec2(200, 200), glm::vec2(512, 512), 0.0f);
+		renderer->DrawSprite(ResourceManager::GetTexture("background"), glm::vec2(0, 0), glm::vec2(Engine::SCREEN_WIDTH, Engine::SCREEN_HEIGHT), 0.0f);
 		pp->EndRender();
 		pp->Render();
 		textRenderer->RenderText("Did i do it", 20.0f, 20.0f, 1);

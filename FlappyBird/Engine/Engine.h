@@ -7,7 +7,7 @@
 class Engine
 {
 public:
-	static const GLuint SCREEN_WIDTH = 1024;
+	static const GLuint SCREEN_WIDTH = 512;
 	static const GLuint SCREEN_HEIGHT = 768;
 
 	Engine();
