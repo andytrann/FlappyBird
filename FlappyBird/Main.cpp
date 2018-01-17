@@ -3,8 +3,10 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
 #include "Engine/ResourceManager.h"
 #include "Engine/Graphics/SpriteRenderer.h"
+#include "Engine/Graphics/PostProcessor.h"
 
 #include <iostream>
 #include <time.h>
@@ -24,6 +26,7 @@ int main()
 	
 	SpriteRenderer* renderer;
 	ResourceManager::LoadShader("Engine/Graphics/Shaders/Sprite.vs", "Engine/Graphics/Shaders/Sprite.fs", nullptr, "sprite");
+	ResourceManager::LoadShader("Engine/Graphics/Shaders/PostProcessing.vs", "Engine/Graphics/Shaders/PostProcessing.fs", nullptr, "postprocessing");
 	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat> (Engine::SCREEN_WIDTH),
 		static_cast<GLfloat>(Engine::SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
 	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
@@ -32,16 +35,21 @@ int main()
 	ResourceManager::LoadTexture("Assets/Textures/awesomeface.png", GL_TRUE, "face");
 
 	renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
+	PostProcessor* pp = new PostProcessor(ResourceManager::GetShader("postprocessing"), Engine::SCREEN_WIDTH, Engine::SCREEN_HEIGHT);
 	
 
 	while (!im.IsGameClosed())
 	{
 		engine.Update();
 		im.Update();
+		pp->BeginRender();
 		renderer->DrawSprite(ResourceManager::GetTexture("face"), glm::vec2(200, 200), glm::vec2(512, 512), 0.0f);
+		pp->EndRender();
+		pp->Render();
 
 		glfwSwapBuffers(engine.GetWindow());
 	}
+	delete pp;
 	delete renderer;
 	ResourceManager::Clear();
 	glfwTerminate();

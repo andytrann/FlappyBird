@@ -35,7 +35,7 @@ public:
 	// Should be called after rendering the game, so it stores all the rendered data into a texture object
 	void EndRender();
 	// Renders the PostProcessor texture quad (as a screen-encompassing large sprite)
-	void Render(GLfloat _time);
+	void Render();
 
 private:
 	// Initialize quad for rendering postprocessing texture

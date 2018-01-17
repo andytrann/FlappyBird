@@ -49,7 +49,7 @@ void PostProcessor::EndRender()
 	glBindFramebuffer(GL_FRAMEBUFFER, 0); // Binds both READ and WRITE framebuffer to default framebuffer
 }
 
-void PostProcessor::Render(GLfloat _time)
+void PostProcessor::Render()
 {
 	// Set uniforms/options
 	postProcessingShader.Use();
