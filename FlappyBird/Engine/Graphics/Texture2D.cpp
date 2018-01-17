@@ -37,3 +37,23 @@ void Texture2D::Bind() const
 {
 	glBindTexture(GL_TEXTURE_2D, ID);
 }
+
+const GLuint& Texture2D::GetID() const
+{
+	return ID;
+}
+
+void Texture2D::SetInternalFormat(GLenum _format)
+{
+	internal_Format = _format;
+}
+
+const GLenum & Texture2D::GetImageFormat() const
+{
+	return image_Format;
+}
+
+void Texture2D::SetImageFormat(GLenum _format)
+{
+	image_Format = _format;
+}

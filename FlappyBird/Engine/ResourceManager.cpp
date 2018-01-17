@@ -36,10 +36,10 @@ void ResourceManager::Clear()
 {
 	// (Properly) delete all shaders	
 	for (auto iter : shaders)
-		glDeleteProgram(iter.second.ID);
+		glDeleteProgram(iter.second.GetID());
 	// (Properly) delete all textures
 	for (auto iter : textures)
-		glDeleteTextures(1, &iter.second.ID);
+		glDeleteTextures(1, &iter.second.GetID());
 }
 
 Shader ResourceManager::LoadShaderFromFile(const GLchar* _vShaderFile, const GLchar* _fShaderFile, const GLchar* _gShaderFile)
@@ -92,12 +92,12 @@ Texture2D ResourceManager::LoadTextureFromFile(const GLchar* _file, GLboolean _a
 	Texture2D texture;
 	if (_alpha)
 	{
-		texture.internal_Format = GL_RGBA;
-		texture.image_Format = GL_RGBA;
+		texture.SetInternalFormat(GL_RGBA);
+		texture.SetImageFormat(GL_RGBA);
 	}
 	// Load image
 	int width, height;
-	unsigned char* image = SOIL_load_image(_file, &width, &height, 0, texture.image_Format == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
+	unsigned char* image = SOIL_load_image(_file, &width, &height, 0, texture.GetImageFormat() == GL_RGBA ? SOIL_LOAD_RGBA : SOIL_LOAD_RGB);
 	// Now generate texture
 	texture.Generate(width, height, image);
 	// And finally free image data

@@ -1,6 +1,11 @@
 #include "Engine/Engine.h"
 #include "FlappyBird/InputManager.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include "Engine/ResourceManager.h"
+#include "Engine/Graphics/SpriteRenderer.h"
+
 #include <iostream>
 #include <time.h>
 
@@ -15,17 +20,30 @@ int main()
 	Game flappyBird(Engine::SCREEN_WIDTH, Engine::SCREEN_HEIGHT);
 	flappyBird.Init();
 	*/
-
 	InputManager im;
+	
+	SpriteRenderer* renderer;
+	ResourceManager::LoadShader("Engine/Graphics/Shaders/Sprite.vs", "Engine/Graphics/Shaders/Sprite.fs", nullptr, "sprite");
+	glm::mat4 projection = glm::ortho(0.0f, static_cast<GLfloat> (Engine::SCREEN_WIDTH),
+		static_cast<GLfloat>(Engine::SCREEN_HEIGHT), 0.0f, -1.0f, 1.0f);
+	ResourceManager::GetShader("sprite").Use().SetInteger("image", 0);
+	ResourceManager::GetShader("sprite").SetMatrix4("projection", projection);
+
+	ResourceManager::LoadTexture("Assets/Textures/awesomeface.png", GL_TRUE, "face");
+
+	renderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
+	
 
 	while (!im.IsGameClosed())
 	{
 		engine.Update();
 		im.Update();
+		renderer->DrawSprite(ResourceManager::GetTexture("face"), glm::vec2(200, 200), glm::vec2(512, 512), 0.0f);
 
 		glfwSwapBuffers(engine.GetWindow());
 	}
-
+	delete renderer;
+	ResourceManager::Clear();
 	glfwTerminate();
 	return 0;
 }

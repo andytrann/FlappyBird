@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "Shader.h"
 
 #include <iostream>
 
@@ -109,6 +109,11 @@ void Shader::SetMatrix4(const GLchar* _name, const glm::mat4& _matrix, GLboolean
 	if (_useShader)
 		Use();
 	glUniformMatrix4fv(glGetUniformLocation(ID, _name), 1, GL_FALSE, glm::value_ptr(_matrix));
+}
+
+const GLuint & Shader::GetID() const
+{
+	return ID;
 }
 
 void Shader::CheckCompileErrors(GLuint _object, std::string _type)

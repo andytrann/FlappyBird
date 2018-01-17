@@ -13,17 +13,24 @@ public:
 	// Binds the texture as the current active GL_TEXTURE_2D texture object
 	void Bind() const;
 
+	const GLuint& GetID() const;
+
+	void SetInternalFormat(GLenum _format);
+
+	const GLenum& GetImageFormat() const;
+	void SetImageFormat(GLenum _format);
+	
+
+private:
 	// Holds the ID of the texture object, used for all texture operations to reference to this particlar texture
 	GLuint ID;
 
-	GLuint internal_Format; // Format of texture object
-	GLuint image_Format; // Format of loaded image
-
-private:
 	// Texture image dimensions
 	GLuint width, height; // Width and height of loaded image in pixels
 	// Texture Format
-	
+	GLuint internal_Format; // Format of texture object
+	GLuint image_Format; // Format of loaded image
+
 	// Texture configuration
 	GLuint wrap_S; // Wrapping mode on S axis
 	GLuint wrap_T; // Wrapping mode on T axis
