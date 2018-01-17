@@ -42,6 +42,9 @@
     <ClCompile Include="Engine\Graphics\PostProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Graphics\TextRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -68,6 +71,9 @@
     <ClInclude Include="Engine\Graphics\PostProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Graphics\TextRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ikpMP3.dll" />
@@ -78,5 +84,8 @@
     <None Include="Engine\Graphics\Shaders\Sprite.vs" />
     <None Include="Engine\Graphics\Shaders\Text.fs" />
     <None Include="Engine\Graphics\Shaders\Text.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\arialbd.ttf" />
   </ItemGroup>
 </Project>
