@@ -30,11 +30,10 @@ public:
 	void    SetVector4f(const GLchar* _name, const glm::vec4& _value, GLboolean _useShader = false);
 	void    SetMatrix4(const GLchar* _name, const glm::mat4& _matrix, GLboolean _useShader = false);
 
-	GLuint GetID();
-
-private:
 	// State
 	GLuint ID;
+
+private:
 	// Checks if compilation or linking failed and if so, print the error logs
 	void    CheckCompileErrors(GLuint _object, std::string _type);
 };

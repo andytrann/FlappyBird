@@ -111,12 +111,6 @@ void Shader::SetMatrix4(const GLchar* _name, const glm::mat4& _matrix, GLboolean
 	glUniformMatrix4fv(glGetUniformLocation(ID, _name), 1, GL_FALSE, glm::value_ptr(_matrix));
 }
 
-GLuint Shader::GetID()
-{
-	return ID;
-}
-
-
 void Shader::CheckCompileErrors(GLuint _object, std::string _type)
 {
 	GLint success;
