@@ -157,6 +157,12 @@
     <ClInclude Include="FlappyBird\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Engine\Graphics\Shaders\PostProcessing.fs" />
+    <None Include="Engine\Graphics\Shaders\PostProcessing.vs" />
+    <None Include="Engine\Graphics\Shaders\Sprite.fs" />
+    <None Include="Engine\Graphics\Shaders\Sprite.vs" />
+    <None Include="Engine\Graphics\Shaders\Text.fs" />
+    <None Include="Engine\Graphics\Shaders\Text.vs" />
     <None Include="ikpMP3.dll" />
     <None Include="irrKlang.dll" />
   </ItemGroup>
