@@ -52,10 +52,10 @@ int main()
 
 		glfwSwapBuffers(engine.GetWindow());
 	}
+	ResourceManager::Clear();
+	glfwTerminate();
 	delete textRenderer;
 	delete pp;
 	delete renderer;
-	ResourceManager::Clear();
-	glfwTerminate();
 	return 0;
 }

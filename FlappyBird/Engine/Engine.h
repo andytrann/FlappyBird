@@ -6,8 +6,14 @@
 
 class Engine
 {
+	/* 
+		bad stretching/shrinking happens when changing with width/height.
+		need to eventually figure out why this occurs.
+		in order to get it to look normal from a different config, i have to
+		comment out pp, change back to normal size, compile, uncomment pp in, compile again.
+	*/
 public:
-	static const GLuint SCREEN_WIDTH = 512;
+	static const GLuint SCREEN_WIDTH = 1024;
 	static const GLuint SCREEN_HEIGHT = 768;
 
 	Engine();
