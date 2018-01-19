@@ -13,8 +13,8 @@ class Engine
 		comment out pp, change back to normal size, compile, uncomment pp in, compile again.
 	*/
 public:
-	static const GLuint SCREEN_WIDTH = 1024;
-	static const GLuint SCREEN_HEIGHT = 768;
+	static GLuint SCREEN_WIDTH;
+	static GLuint SCREEN_HEIGHT;
 
 	Engine();
 	~Engine();

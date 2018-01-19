@@ -6,6 +6,9 @@
 
 using namespace std;
 
+GLuint Engine::SCREEN_WIDTH = 1024;
+GLuint Engine::SCREEN_HEIGHT = 768;
+
 GLFWwindow* Engine::window = nullptr;
 GLfloat Engine::dt = 0.0f;
 
