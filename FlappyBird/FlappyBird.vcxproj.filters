@@ -48,6 +48,9 @@
     <ClCompile Include="FlappyBird\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -80,6 +83,9 @@
     <ClInclude Include="FlappyBird\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ikpMP3.dll" />
@@ -99,6 +105,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\Textures\awesomeface.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Textures\bird.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

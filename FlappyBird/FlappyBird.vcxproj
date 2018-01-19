@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\GameObject.cpp" />
     <ClCompile Include="Engine\Graphics\PostProcessor.cpp" />
     <ClCompile Include="Engine\Graphics\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Graphics\TextRenderer.cpp" />
@@ -156,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\GameObject.h" />
     <ClInclude Include="Engine\Graphics\PostProcessor.h" />
     <ClInclude Include="Engine\Graphics\Shader.h" />
     <ClInclude Include="Engine\Graphics\SpriteRenderer.h" />
@@ -182,6 +184,7 @@
   <ItemGroup>
     <Image Include="Assets\Textures\awesomeface.png" />
     <Image Include="Assets\Textures\background.png" />
+    <Image Include="Assets\Textures\bird.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
