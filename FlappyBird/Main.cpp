@@ -23,9 +23,10 @@ int main()
 	
 	InputManager im;
 	
-	while (!im.IsGameClosed())
+	while (!flappyBird.IsGameClosed())
 	{
-		im.Update();
+		//im.Update();
+		flappyBird.ProcessInput();
 		engine.Update();
 		flappyBird.Update();
 		flappyBird.Render();

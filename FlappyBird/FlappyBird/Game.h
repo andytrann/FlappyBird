@@ -20,9 +20,12 @@ public:
 	~Game();
 
 	void Init();
+	void ProcessInput();
 	void Update();
 	void Render();
 	void Reset();
+
+	GLboolean IsGameClosed();
 
 private:
 	GameState state;

@@ -2,6 +2,8 @@
 #define BIRD_H
 
 #include "../Engine/GameObject.h"
+#include "../Engine/ResourceManager.h"
+#include "../Engine/Physics/Rigidbody.h"
 
 enum class State
 {
@@ -24,6 +26,7 @@ private:
 	GLfloat radius;
 	GLfloat flapForce;
 
+	Rigidbody rb;
 };
 
 #endif

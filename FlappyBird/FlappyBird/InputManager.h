@@ -3,18 +3,17 @@
 
 #include "../Engine/Engine.h"
 #include "../Engine/IO/Keyboard.h"
+#include "Bird.h"
 
 class InputManager
 {
 public:
 	InputManager();
-	//InputManager(Flapper* _flapper);
 
 	bool IsGameClosed();
 
-	void Update();
+	void Update(Bird& _bird);
 private:
-	//Flapper* flapper;
 	bool gameClosed = false;
 };
 

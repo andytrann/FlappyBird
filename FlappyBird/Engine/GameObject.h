@@ -15,7 +15,6 @@ public:
 
 	void Draw(SpriteRenderer& _renderer);
 
-protected:
 	glm::vec2 pos, size, vel;
 	glm::vec3 color;
 	GLfloat rot;

@@ -6,6 +6,7 @@
 #include "../Engine/Graphics/PostProcessor.h"
 #include "../Engine/Graphics/TextRenderer.h"
 #include "Bird.h"
+#include "InputManager.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -26,6 +27,7 @@ TextRenderer* textRenderer;
 ISoundEngine* soundEngine = createIrrKlangDevice();
 
 Bird* bird;
+InputManager* im;
 
 Game::Game(GLuint _width, GLuint _height) :
 	state(GameState::GAME_ACTIVE),
@@ -51,6 +53,9 @@ Game::~Game()
 
 	delete bird;
 	bird = nullptr;
+
+	delete im;
+	im = nullptr;
 }
 
 void Game::Init()
@@ -70,6 +75,7 @@ void Game::Init()
 	//Load textures
 	ResourceManager::LoadTexture("Assets/Textures/background.png", GL_FALSE, "background");
 	ResourceManager::LoadTexture("Assets/Textures/bird.png", GL_TRUE, "bird");
+	ResourceManager::LoadTexture("Assets/Textures/outline.png", GL_TRUE, "outline");
 
 	//Set render-specific controls
 	spriteRenderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
@@ -86,11 +92,19 @@ void Game::Init()
 	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 100.0f);
 
 	//Load pipes
+
+	//Load input manager
+	im = new InputManager();
+}
+
+void Game::ProcessInput()
+{
+	im->Update(*bird);
 }
 
 void Game::Update()
 {
-
+	bird->Update();
 }
 
 void Game::Render()
@@ -108,4 +122,9 @@ void Game::Render()
 void Game::Reset()
 {
 
+}
+
+GLboolean Game::IsGameClosed()
+{
+	return im->IsGameClosed();
 }

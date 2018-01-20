@@ -2,26 +2,21 @@
 
 InputManager::InputManager()
 {
-	//flapper = nullptr;
+	gameClosed = false;
 }
-/*
-InputManager::InputManager(Flapper* _flapper)
-{
-	flapper = _flapper;
-}
-*/
+
 bool InputManager::IsGameClosed()
 {
 	return gameClosed;
 }
 
-void InputManager::Update()
-{	/*
-	if (Keyboard::KeyDown(GLFW_KEY_SPACE) || Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT))
+void InputManager::Update(Bird& _bird)
+{	
+	if (Keyboard::KeyDown(GLFW_KEY_SPACE) /*|| Mouse::ButtonDown(GLFW_MOUSE_BUTTON_LEFT)*/)
 	{
-		flapper->Flap();
+		_bird.Flap();
 	}
-
+	/*
 	if (Keyboard::KeyDown(GLFW_KEY_GRAVE_ACCENT))
 	{
 		flapper->TogglePause();
