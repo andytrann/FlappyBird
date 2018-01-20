@@ -25,8 +25,12 @@ public:
 private:
 	GLfloat radius;
 	GLfloat flapForce;
+	GLfloat maxFallSpeed = 700.0f;
+	GLfloat maxRot = 90.0f;
+	GLfloat minRot = -30.0f;
 
 	Rigidbody rb;
+	
 };
 
 #endif
