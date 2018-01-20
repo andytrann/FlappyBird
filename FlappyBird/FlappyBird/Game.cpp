@@ -5,7 +5,7 @@
 #include "../Engine/Graphics/SpriteRenderer.h"
 #include "../Engine/Graphics/PostProcessor.h"
 #include "../Engine/Graphics/TextRenderer.h"
-#include "../Engine/GameObject.h"
+#include "Bird.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -25,7 +25,7 @@ PostProcessor* postProcessor;
 TextRenderer* textRenderer;
 ISoundEngine* soundEngine = createIrrKlangDevice();
 
-GameObject* bird;
+Bird* bird;
 
 Game::Game(GLuint _width, GLuint _height) :
 	state(GameState::GAME_ACTIVE),
@@ -48,6 +48,9 @@ Game::~Game()
 
 	delete soundEngine;
 	soundEngine = nullptr;
+
+	delete bird;
+	bird = nullptr;
 }
 
 void Game::Init()
@@ -80,7 +83,7 @@ void Game::Init()
 
 	//Load bird
 	glm::vec2 playerPos = glm::vec2((width / 2) - BIRD_RADIUS, (height / 2) - BIRD_RADIUS);
-	bird = new GameObject(playerPos, glm::vec2(BIRD_RADIUS * 2, BIRD_RADIUS * 2), ResourceManager::GetTexture("bird"));
+	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 100.0f);
 
 	//Load pipes
 }
@@ -93,8 +96,10 @@ void Game::Update()
 void Game::Render()
 {
 	postProcessor->BeginRender();
+
 	spriteRenderer->DrawSprite(ResourceManager::GetTexture("background"), glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f);
-	bird->Draw(*spriteRenderer);
+	bird->Render(*spriteRenderer);
+
 	postProcessor->EndRender();
 	postProcessor->Render();
 	textRenderer->RenderText("Did i do it", 20.0f, 20.0f, 1.0f);

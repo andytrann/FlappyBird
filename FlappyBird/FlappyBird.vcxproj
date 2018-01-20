@@ -151,6 +151,7 @@
     <ClCompile Include="Engine\IO\Keyboard.cpp" />
     <ClCompile Include="Engine\Graphics\Shader.cpp" />
     <ClCompile Include="Engine\ResourceManager.cpp" />
+    <ClCompile Include="FlappyBird\Bird.cpp" />
     <ClCompile Include="FlappyBird\Game.cpp" />
     <ClCompile Include="FlappyBird\InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Engine\Graphics\Texture2D.h" />
     <ClInclude Include="Engine\IO\Keyboard.h" />
     <ClInclude Include="Engine\ResourceManager.h" />
+    <ClInclude Include="FlappyBird\Bird.h" />
     <ClInclude Include="FlappyBird\Game.h" />
     <ClInclude Include="FlappyBird\InputManager.h" />
   </ItemGroup>
