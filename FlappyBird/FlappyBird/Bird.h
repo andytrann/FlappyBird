@@ -15,13 +15,13 @@ class Bird : public GameObject
 {
 public:
 	Bird();
-	Bird(glm::vec2 _pos, GLfloat _radius, Texture2D _sprite, glm::vec2 _vel, GLfloat _flapForce);
+	Bird(glm::vec2 _pos, GLfloat _radius, Texture2D _sprite, glm::vec2 _vel, GLfloat _flapForce, GLfloat _gravity = 30.0f);
 
 	void Update();
 	void Render(SpriteRenderer& _renderer);
 
 	void Flap();
-
+	Rigidbody rb;
 private:
 	GLfloat radius;
 	GLfloat flapForce;
@@ -29,7 +29,7 @@ private:
 	GLfloat maxRot = 90.0f;
 	GLfloat minRot = -30.0f;
 
-	Rigidbody rb;
+	
 	
 };
 
