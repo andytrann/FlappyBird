@@ -7,15 +7,17 @@
 
 Rigidbody::Rigidbody() : 
 	gravity(0.0f),
-	friction(1.0f)
+	friction(1.0f),
+	offset(glm::vec2(0.0f, 0.0f))
 {
 
 }
 
-void Rigidbody::Init(GLfloat _gravity, GLfloat _friction)
+void Rigidbody::Init(GLfloat _gravity, GLfloat _friction, glm::vec2 _offset)
 {
 	gravity = _gravity;
 	friction = _friction;
+	offset = _offset;
 }
 
 void Rigidbody::Update(GameObject& _object)
@@ -26,9 +28,9 @@ void Rigidbody::Update(GameObject& _object)
 	_object.pos += (_object.vel * Engine::GetDT());
 }
 
-void Rigidbody::Render(GameObject& _object)
+void Rigidbody::Render(GameObject& _object, SpriteRenderer& _renderer)
 {
-	
+	_renderer.DrawSprite(ResourceManager::GetTexture("outline"), _object.pos + offset, _object.size - (offset * 2.0f), _object.rot, _object.color);
 }
 glm::vec2 Project(const glm::vec2& a, const glm::vec2& b);
 bool Rigidbody::CheckCollision(GameObject& _obj1, GameObject& _obj2)
@@ -37,10 +39,10 @@ bool Rigidbody::CheckCollision(GameObject& _obj1, GameObject& _obj2)
 	glm::vec2 center1 = _obj1.pos + (_obj1.size / 2.0f);
 	
 	//get vertices of RB before rotation
-	glm::vec2 UL1 = _obj1.pos;
-	glm::vec2 UR1 = glm::vec2(_obj1.pos.x + _obj1.size.x, _obj1.pos.y);
-	glm::vec2 LL1 = glm::vec2(_obj1.pos.x, _obj1.pos.y + _obj1.size.y);
-	glm::vec2 LR1 = glm::vec2(_obj1.pos.x + _obj1.size.x, _obj1.pos.y + _obj1.size.y);
+	glm::vec2 UL1 = glm::vec2(_obj1.pos.x + offset.x, _obj1.pos.y + offset.y);
+	glm::vec2 UR1 = glm::vec2(_obj1.pos.x + _obj1.size.x - offset.x, _obj1.pos.y + offset.y);
+	glm::vec2 LL1 = glm::vec2(_obj1.pos.x + offset.x, _obj1.pos.y + _obj1.size.y - offset.y);
+	glm::vec2 LR1 = glm::vec2(_obj1.pos.x + _obj1.size.x - offset.x, _obj1.pos.y + _obj1.size.y - offset.y);
 
 	//apply rotation
 	glm::vec2 tempUL1 = UL1 - center1;
@@ -101,7 +103,7 @@ bool Rigidbody::CheckCollision(GameObject& _obj1, GameObject& _obj2)
 	axes.push_back(axis3);
 	axes.push_back(axis4);
 
-	for (int i = 0; i < axes.size(); i++)
+	for (unsigned int i = 0; i < axes.size(); i++)
 	{
 		glm::vec2 ULProj1 = Project(UL1, axes[i]);
 		glm::vec2 URProj1 = Project(UR1, axes[i]);
