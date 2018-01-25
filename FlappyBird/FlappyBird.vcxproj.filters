@@ -57,6 +57,9 @@
     <ClCompile Include="Engine\Physics\Rigidbody.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FlappyBird\Pipe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -98,6 +101,9 @@
     <ClInclude Include="Engine\Physics\Rigidbody.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FlappyBird\Pipe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ikpMP3.dll" />
@@ -123,6 +129,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Assets\Textures\outline.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Textures\pipe.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

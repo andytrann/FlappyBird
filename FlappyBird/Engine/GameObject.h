@@ -18,7 +18,6 @@ public:
 	glm::vec2 pos, size, vel;
 	glm::vec3 color;
 	GLfloat rot;
-	GLboolean isSolid;
 	GLboolean destroyed;
 	Texture2D sprite;
 };

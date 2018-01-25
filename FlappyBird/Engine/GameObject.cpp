@@ -7,7 +7,6 @@ GameObject::GameObject() :
 	color(1.0f),
 	rot(0.0f),
 	sprite(),
-	isSolid(false),
 	destroyed(false)
 {
 }
@@ -19,7 +18,6 @@ GameObject::GameObject(glm::vec2 _pos, glm::vec2 _size, Texture2D _sprite, glm::
 	color(_color),
 	rot(0.0f),
 	sprite(_sprite),
-	isSolid(false),
 	destroyed(false)
 {
 }

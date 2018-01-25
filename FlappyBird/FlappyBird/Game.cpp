@@ -6,6 +6,7 @@
 #include "../Engine/Graphics/PostProcessor.h"
 #include "../Engine/Graphics/TextRenderer.h"
 #include "Bird.h"
+#include "Pipe.h"
 #include "InputManager.h"
 
 #include <glm/glm.hpp>
@@ -31,9 +32,8 @@ TextRenderer* textRenderer;
 ISoundEngine* soundEngine = createIrrKlangDevice();
 
 Bird* bird;
+Pipe* pipe;
 InputManager* im;
-
-Bird* bird2;
 
 Game::Game(GLuint _width, GLuint _height) :
 	state(GameState::GAME_ACTIVE),
@@ -63,8 +63,8 @@ Game::~Game()
 	delete im;
 	im = nullptr;
 
-	delete bird2;
-	bird2 = nullptr;
+	delete pipe;
+	pipe = nullptr;
 }
 
 void Game::Init()
@@ -85,6 +85,7 @@ void Game::Init()
 	ResourceManager::LoadTexture("Assets/Textures/background.png", GL_FALSE, "background");
 	ResourceManager::LoadTexture("Assets/Textures/bird.png", GL_TRUE, "bird");
 	ResourceManager::LoadTexture("Assets/Textures/outline.png", GL_TRUE, "outline");
+	ResourceManager::LoadTexture("Assets/Textures/pipe.png", GL_TRUE, "pipe");
 
 	//Set render-specific controls
 	spriteRenderer = new SpriteRenderer(ResourceManager::GetShader("sprite"));
@@ -98,11 +99,10 @@ void Game::Init()
 
 	//Load bird
 	glm::vec2 playerPos = glm::vec2((width / 2) - BIRD_RADIUS, (height / 2) - BIRD_RADIUS);
-	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 550.0f, 30.0f, glm::vec2(5.0f,5.0f));
-	bird2 = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 550.0f, 0.0f);
+	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 550.0f, 30.0f, glm::vec2(8.0f,10.0f));
 
 	//Load pipes
-
+	pipe = new Pipe(glm::vec2(playerPos.x + 500.f, playerPos.y), glm::vec2(90.0f, 396.0f), ResourceManager::GetTexture("pipe"), 200, 80);
 	//Load input manager
 	im = new InputManager();
 }
@@ -115,9 +115,9 @@ void Game::ProcessInput()
 void Game::Update()
 {
 	bird->Update();
-	bird2->Update();
+	pipe->Update();
 	
-	bool isColliding = bird->rb.CheckCollision(*bird, *bird2);
+	bool isColliding = bird->rb.CheckCollision(*bird, pipe->topPipe) || bird->rb.CheckCollision(*bird, pipe->botPipe);
 	std::cout << (isColliding ? "COLLIDING!!!" : "....") << std::endl;
 	
 }
@@ -126,8 +126,8 @@ void Game::Render()
 {
 	postProcessor->BeginRender();
 
-	spriteRenderer->DrawSprite(ResourceManager::GetTexture("background"), glm::vec2(0.0f, 0.0f), glm::vec2(width, height), 0.0f);
-	bird2->Render(*spriteRenderer);
+	spriteRenderer->DrawSprite(ResourceManager::GetTexture("background"), glm::vec2(0.0f, 0.0f), glm::vec2(width, height));
+	pipe->Render(*spriteRenderer);
 	bird->Render(*spriteRenderer);
 
 	postProcessor->EndRender();

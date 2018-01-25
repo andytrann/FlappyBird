@@ -155,6 +155,7 @@
     <ClCompile Include="FlappyBird\Bird.cpp" />
     <ClCompile Include="FlappyBird\Game.cpp" />
     <ClCompile Include="FlappyBird\InputManager.cpp" />
+    <ClCompile Include="FlappyBird\Pipe.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="FlappyBird\Bird.h" />
     <ClInclude Include="FlappyBird\Game.h" />
     <ClInclude Include="FlappyBird\InputManager.h" />
+    <ClInclude Include="FlappyBird\Pipe.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Graphics\Shaders\PostProcessing.fs" />
@@ -190,6 +192,7 @@
     <Image Include="Assets\Textures\background.png" />
     <Image Include="Assets\Textures\bird.png" />
     <Image Include="Assets\Textures\outline.png" />
+    <Image Include="Assets\Textures\pipe.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

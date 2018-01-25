@@ -11,7 +11,7 @@ class Rigidbody
 public:
 	Rigidbody();
 
-	void Init(GLfloat _gravity, GLfloat friction, glm::vec2 _offset);
+	void Init(GLfloat _gravity, GLfloat friction, glm::vec2 _offset = glm::vec2(0.0f, 0.0f));
 	void Update(GameObject& _object);
 	void Render(GameObject& _object, SpriteRenderer& _renderer);
 

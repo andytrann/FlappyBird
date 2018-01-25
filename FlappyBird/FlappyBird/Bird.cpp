@@ -37,7 +37,6 @@ void Bird::Update()
 void Bird::Render(SpriteRenderer& _renderer)
 {
 	_renderer.DrawSprite(sprite, pos, size, rot, color);
-	//_renderer.DrawSprite(ResourceManager::GetTexture("outline"), pos, size, rot, color);
 	rb.Render(*this, _renderer);
 }
 
