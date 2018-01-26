@@ -178,7 +178,8 @@ void Game::Render()
 		std::stringstream score;
 		score << scoreManager->GetScore();
 		textRenderer->RenderText(score.str(), 20.0f, 20.0f, 1.0f);
-		textRenderer->RenderText("Press Spacebar to Restart", (GLfloat)(Engine::SCREEN_WIDTH/2.0f - 180.0f), (GLfloat)(Engine::SCREEN_HEIGHT/2.0f - 75.0f), 1.0f);
+		if(bird->state == BirdState::DEAD)
+			textRenderer->RenderText("Press Spacebar to Restart", (GLfloat)(Engine::SCREEN_WIDTH/2.0f - 180.0f), (GLfloat)(Engine::SCREEN_HEIGHT/2.0f - 75.0f), 1.0f);
 	}
 }
 
