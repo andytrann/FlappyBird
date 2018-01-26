@@ -157,6 +157,7 @@
     <ClCompile Include="FlappyBird\InputManager.cpp" />
     <ClCompile Include="FlappyBird\Pipe.cpp" />
     <ClCompile Include="FlappyBird\PipeManager.cpp" />
+    <ClCompile Include="FlappyBird\ScoreManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="FlappyBird\InputManager.h" />
     <ClInclude Include="FlappyBird\Pipe.h" />
     <ClInclude Include="FlappyBird\PipeManager.h" />
+    <ClInclude Include="FlappyBird\ScoreManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Graphics\Shaders\PostProcessing.fs" />
@@ -195,6 +197,9 @@
     <Image Include="Assets\Textures\bird.png" />
     <Image Include="Assets\Textures\outline.png" />
     <Image Include="Assets\Textures\pipe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\Sounds\ScoreFX.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,6 +9,7 @@
 #include "Pipe.h"
 #include "PipeManager.h"
 #include "InputManager.h"
+#include "ScoreManager.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,7 +23,7 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
-
+#include <sstream>
 
 using namespace irrklang;
 
@@ -34,6 +35,7 @@ ISoundEngine* soundEngine = createIrrKlangDevice();
 
 Bird* bird;
 PipeManager* pipeManager;
+ScoreManager* scoreManager;
 InputManager* im;
 
 Game::Game(GLuint _width, GLuint _height) :
@@ -66,6 +68,9 @@ Game::~Game()
 
 	delete pipeManager;
 	pipeManager = nullptr;
+
+	delete scoreManager;
+	scoreManager = nullptr;
 }
 
 void Game::Init()
@@ -104,6 +109,10 @@ void Game::Init()
 
 	//Load pipes
 	pipeManager = new PipeManager();
+
+	//Load scoremanager
+	scoreManager = new ScoreManager(*pipeManager);
+
 	//Load input manager
 	im = new InputManager();
 }
@@ -119,7 +128,11 @@ void Game::Update()
 	pipeManager->Update();
 	
 	bool isColliding = pipeManager->CheckCollision(*bird);
-	std::cout << (isColliding ? "COLLIDING!!!" : "....") << std::endl;
+	//std::cout << (isColliding ? "COLLIDING!!!" : "....") << std::endl;
+	if (scoreManager->Update())
+	{
+		soundEngine->play2D("Assets/Sounds/ScoreFX.mp3", GL_FALSE);
+	}
 	
 }
 
@@ -133,7 +146,9 @@ void Game::Render()
 
 	postProcessor->EndRender();
 	postProcessor->Render();
-	textRenderer->RenderText("Did i do it", 20.0f, 20.0f, 1.0f);
+	std::stringstream score;
+	score << scoreManager->GetScore();
+	textRenderer->RenderText(score.str(), 20.0f, 20.0f, 1.0f);
 }
 
 void Game::Reset()

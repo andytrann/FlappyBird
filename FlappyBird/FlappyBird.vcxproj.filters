@@ -63,6 +63,9 @@
     <ClCompile Include="FlappyBird\PipeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FlappyBird\ScoreManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Engine.h">
@@ -110,6 +113,9 @@
     <ClInclude Include="FlappyBird\PipeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FlappyBird\ScoreManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ikpMP3.dll" />
@@ -140,5 +146,8 @@
     <Image Include="Assets\Textures\pipe.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\Sounds\ScoreFX.mp3" />
   </ItemGroup>
 </Project>
