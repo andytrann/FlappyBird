@@ -7,6 +7,7 @@
 #include "../Engine/Graphics/TextRenderer.h"
 #include "Bird.h"
 #include "Pipe.h"
+#include "PipeManager.h"
 #include "InputManager.h"
 
 #include <glm/glm.hpp>
@@ -32,7 +33,7 @@ TextRenderer* textRenderer;
 ISoundEngine* soundEngine = createIrrKlangDevice();
 
 Bird* bird;
-Pipe* pipe;
+PipeManager* pipeManager;
 InputManager* im;
 
 Game::Game(GLuint _width, GLuint _height) :
@@ -63,8 +64,8 @@ Game::~Game()
 	delete im;
 	im = nullptr;
 
-	delete pipe;
-	pipe = nullptr;
+	delete pipeManager;
+	pipeManager = nullptr;
 }
 
 void Game::Init()
@@ -102,7 +103,7 @@ void Game::Init()
 	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 550.0f, 30.0f, glm::vec2(8.0f,10.0f));
 
 	//Load pipes
-	pipe = new Pipe(glm::vec2(playerPos.x + 500.f, playerPos.y), glm::vec2(90.0f, 396.0f), ResourceManager::GetTexture("pipe"), 200, 80);
+	pipeManager = new PipeManager();
 	//Load input manager
 	im = new InputManager();
 }
@@ -115,9 +116,9 @@ void Game::ProcessInput()
 void Game::Update()
 {
 	bird->Update();
-	pipe->Update();
+	pipeManager->Update();
 	
-	bool isColliding = bird->rb.CheckCollision(*bird, pipe->topPipe) || bird->rb.CheckCollision(*bird, pipe->botPipe);
+	bool isColliding = pipeManager->CheckCollision(*bird);
 	std::cout << (isColliding ? "COLLIDING!!!" : "....") << std::endl;
 	
 }
@@ -127,7 +128,7 @@ void Game::Render()
 	postProcessor->BeginRender();
 
 	spriteRenderer->DrawSprite(ResourceManager::GetTexture("background"), glm::vec2(0.0f, 0.0f), glm::vec2(width, height));
-	pipe->Render(*spriteRenderer);
+	pipeManager->Render(*spriteRenderer);
 	bird->Render(*spriteRenderer);
 
 	postProcessor->EndRender();

@@ -18,6 +18,7 @@ public:
 	bool IsActive() const;
 
 	GLfloat GetPosX() const;
+	GLfloat GetWidth() const;
 
 	Rigidbody topRB;
 	Rigidbody botRB;
@@ -27,7 +28,8 @@ public:
 
 private:
 	glm::vec2 pos; //located in middle right edge of the gap
-	
+	GLfloat width;
+
 	static GLfloat speed;
 	static GLfloat gap;
 

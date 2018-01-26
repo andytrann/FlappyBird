@@ -156,6 +156,7 @@
     <ClCompile Include="FlappyBird\Game.cpp" />
     <ClCompile Include="FlappyBird\InputManager.cpp" />
     <ClCompile Include="FlappyBird\Pipe.cpp" />
+    <ClCompile Include="FlappyBird\PipeManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +174,7 @@
     <ClInclude Include="FlappyBird\Game.h" />
     <ClInclude Include="FlappyBird\InputManager.h" />
     <ClInclude Include="FlappyBird\Pipe.h" />
+    <ClInclude Include="FlappyBird\PipeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Graphics\Shaders\PostProcessing.fs" />

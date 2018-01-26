@@ -18,6 +18,7 @@ Pipe::Pipe(glm::vec2 _pos, glm::vec2 _size, Texture2D _sprite, GLfloat _speed, G
 	topRB(),
 	botRB(),
 	pos(_pos),
+	width(_size.x - (_rbOffset.x * 2.0f)),
 	topPipe(_pos, _size, _sprite),
 	botPipe(_pos, _size, _sprite)
 {
@@ -36,6 +37,7 @@ void Pipe::Update()
 {
 	topRB.Update(topPipe);
 	botRB.Update(botPipe);
+	pos = glm::vec2(botPipe.pos.x, botPipe.pos.y - gap);
 }
 
 void Pipe::Render(SpriteRenderer & _renderer)
@@ -60,6 +62,11 @@ bool Pipe::IsActive() const
 GLfloat Pipe::GetPosX() const
 {
 	return pos.x;
+}
+
+GLfloat Pipe::GetWidth() const
+{
+	return width;
 }
 
 
