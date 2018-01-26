@@ -39,6 +39,7 @@ void Bird::Update()
 		if (pos.y > Engine::SCREEN_HEIGHT + 5)
 		{
 			pos.y = (GLfloat)Engine::SCREEN_HEIGHT + 6;
+			state = BirdState::DEAD;
 		}
 	}
 }
@@ -46,7 +47,7 @@ void Bird::Update()
 void Bird::Render(SpriteRenderer& _renderer)
 {
 	_renderer.DrawSprite(sprite, pos, size, rot, color);
-	rb.Render(*this, _renderer);
+	//rb.Render(*this, _renderer);
 }
 
 void Bird::Flap()

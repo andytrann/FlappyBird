@@ -200,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Sounds\DeadFX.mp3" />
+    <Media Include="Assets\Sounds\FlapFX.mp3" />
     <Media Include="Assets\Sounds\ScoreFX.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -82,7 +82,7 @@ std::vector<Pipe*> PipeManager::GetPipes() const
 void PipeManager::CreatePipe()
 {
 	GLfloat spawnY = (GLfloat)(rand() % (minSpawnY - maxSpawnY) + maxSpawnY);
-	Pipe* pipe = new Pipe(glm::vec2(Engine::SCREEN_WIDTH + 90.0f, spawnY), glm::vec2(90.0f, 500.0f), ResourceManager::GetTexture("pipe"), 200.0f, 80.0f);
+	Pipe* pipe = new Pipe(glm::vec2(Engine::SCREEN_WIDTH + 90.0f, spawnY), glm::vec2(90.0f, 500.0f), ResourceManager::GetTexture("pipe"), 200.0f, 75.0f);
 	
 	pipes.push_back(pipe);
 	totalPipes++;

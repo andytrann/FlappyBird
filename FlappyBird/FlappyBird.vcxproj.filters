@@ -150,5 +150,6 @@
   <ItemGroup>
     <Media Include="Assets\Sounds\ScoreFX.mp3" />
     <Media Include="Assets\Sounds\DeadFX.mp3" />
+    <Media Include="Assets\Sounds\FlapFX.mp3" />
   </ItemGroup>
 </Project>

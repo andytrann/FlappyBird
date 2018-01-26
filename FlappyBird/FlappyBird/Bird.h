@@ -8,6 +8,7 @@
 enum class BirdState
 {
 	ALIVE,
+	DYING,
 	DEAD,
 	FROZEN
 };

@@ -119,7 +119,7 @@ void Game::Init()
 
 void Game::ProcessInput()
 {
-	im->Update(*this, *bird);
+	im->Update(*this, *bird, soundEngine);
 }
 
 void Game::Update()
@@ -136,7 +136,7 @@ void Game::Update()
 		if (pipeManager->CheckCollision(*bird) || bird->pos.y > Engine::SCREEN_HEIGHT + 5)
 		{
 			state = GameState::GAME_LOSE;
-			bird->state = BirdState::DEAD;
+			bird->state = BirdState::DYING;
 			soundEngine->play2D("Assets/Sounds/DeadFX.mp3", GL_FALSE);
 		}
 		
