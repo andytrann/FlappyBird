@@ -8,7 +8,7 @@ enum class GameState
 {
 	GAME_ACTIVE,
 	GAME_MENU,
-	GAME_WIN
+	GAME_LOSE
 };
 
 const GLfloat BIRD_RADIUS = 30.0f;
@@ -26,9 +26,9 @@ public:
 	void Reset();
 
 	GLboolean IsGameClosed();
-
-private:
 	GameState state;
+private:
+	
 	GLuint width, height;
 };
 

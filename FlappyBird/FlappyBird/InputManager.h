@@ -5,6 +5,8 @@
 #include "../Engine/IO/Keyboard.h"
 #include "Bird.h"
 
+class Game;
+
 class InputManager
 {
 public:
@@ -12,7 +14,7 @@ public:
 
 	bool IsGameClosed();
 
-	void Update(Bird& _bird);
+	void Update(Game& _game, Bird& _bird);
 private:
 	bool gameClosed = false;
 };

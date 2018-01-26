@@ -149,5 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Assets\Sounds\ScoreFX.mp3" />
+    <Media Include="Assets\Sounds\DeadFX.mp3" />
   </ItemGroup>
 </Project>

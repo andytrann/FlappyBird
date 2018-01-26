@@ -39,7 +39,7 @@ ScoreManager* scoreManager;
 InputManager* im;
 
 Game::Game(GLuint _width, GLuint _height) :
-	state(GameState::GAME_ACTIVE),
+	state(GameState::GAME_MENU),
 	width(_width),
 	height(_height)
 {
@@ -101,7 +101,7 @@ void Game::Init()
 
 	//Load text font
 	textRenderer = new TextRenderer(width, height);
-	textRenderer->Load("Assets/Fonts/arialbd.ttf", 24);
+	textRenderer->Load("Assets/Fonts/arialbd.ttf", 32);
 
 	//Load bird
 	glm::vec2 playerPos = glm::vec2((width / 2) - BIRD_RADIUS, (height / 2) - BIRD_RADIUS);
@@ -119,19 +119,36 @@ void Game::Init()
 
 void Game::ProcessInput()
 {
-	im->Update(*bird);
+	im->Update(*this, *bird);
 }
 
 void Game::Update()
 {
-	bird->Update();
-	pipeManager->Update();
-	
-	bool isColliding = pipeManager->CheckCollision(*bird);
-	//std::cout << (isColliding ? "COLLIDING!!!" : "....") << std::endl;
-	if (scoreManager->Update())
+	if (state == GameState::GAME_MENU)
 	{
-		soundEngine->play2D("Assets/Sounds/ScoreFX.mp3", GL_FALSE);
+
+	}
+	else if (state == GameState::GAME_ACTIVE)
+	{
+		bird->Update();
+		pipeManager->Update();
+
+		if (pipeManager->CheckCollision(*bird) || bird->pos.y > Engine::SCREEN_HEIGHT + 5)
+		{
+			state = GameState::GAME_LOSE;
+			bird->state = BirdState::DEAD;
+			soundEngine->play2D("Assets/Sounds/DeadFX.mp3", GL_FALSE);
+		}
+		
+		if (scoreManager->Update())
+		{
+			soundEngine->play2D("Assets/Sounds/ScoreFX.mp3", GL_FALSE);
+		}
+	}
+
+	else if (state == GameState::GAME_LOSE)
+	{
+		bird->Update();
 	}
 	
 }
@@ -146,14 +163,41 @@ void Game::Render()
 
 	postProcessor->EndRender();
 	postProcessor->Render();
-	std::stringstream score;
-	score << scoreManager->GetScore();
-	textRenderer->RenderText(score.str(), 20.0f, 20.0f, 1.0f);
+	if(state == GameState::GAME_MENU)
+	{
+		textRenderer->RenderText("Press Spacebar to Start", (GLfloat)(Engine::SCREEN_WIDTH/2.0f - 175.0f), (GLfloat)(Engine::SCREEN_HEIGHT/2.0f - 100.0f), 1.0f);
+	}
+	else if (state == GameState::GAME_ACTIVE)
+	{
+		std::stringstream score;
+		score << scoreManager->GetScore();
+		textRenderer->RenderText(score.str(), 20.0f, 20.0f, 1.0f);
+	}
+	else if (state == GameState::GAME_LOSE)
+	{
+		std::stringstream score;
+		score << scoreManager->GetScore();
+		textRenderer->RenderText(score.str(), 20.0f, 20.0f, 1.0f);
+		textRenderer->RenderText("Press Spacebar to Restart", (GLfloat)(Engine::SCREEN_WIDTH/2.0f - 180.0f), (GLfloat)(Engine::SCREEN_HEIGHT/2.0f - 75.0f), 1.0f);
+	}
 }
 
 void Game::Reset()
 {
+	glm::vec2 playerPos = glm::vec2((width / 2) - BIRD_RADIUS, (height / 2) - BIRD_RADIUS);
+	delete bird;
+	bird = new Bird(playerPos, BIRD_RADIUS, ResourceManager::GetTexture("bird"), glm::vec2(0.0f, 0.0f), 550.0f, 30.0f, glm::vec2(8.0f, 10.0f));
 
+	//Load pipes
+	delete pipeManager;
+	pipeManager = new PipeManager();
+
+	//Load scoremanager
+	delete scoreManager;
+	scoreManager = new ScoreManager(*pipeManager);
+
+	state = GameState::GAME_MENU;
+	bird->state = BirdState::FROZEN;
 }
 
 GLboolean Game::IsGameClosed()
