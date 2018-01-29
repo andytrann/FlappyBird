@@ -7,7 +7,7 @@
 
 class Bird;
 class SpriteRenderer;
-
+ 
 class PipeManager
 {
 public:
