@@ -10,6 +10,7 @@ class Engine
 public:
 	static GLuint SCREEN_WIDTH;
 	static GLuint SCREEN_HEIGHT;
+	const static GLfloat MS_PER_UPDATE;
 
 	Engine();
 	~Engine();

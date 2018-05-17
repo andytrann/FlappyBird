@@ -8,6 +8,7 @@ using namespace std;
 
 GLuint Engine::SCREEN_WIDTH = 1024;
 GLuint Engine::SCREEN_HEIGHT = 768;
+const GLfloat Engine::MS_PER_UPDATE = .016f;
 
 GLFWwindow* Engine::window = nullptr;
 GLfloat Engine::dt = 0.0f;

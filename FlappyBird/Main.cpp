@@ -20,6 +20,8 @@ int main()
 	
 	Game flappyBird(Engine::SCREEN_WIDTH, Engine::SCREEN_HEIGHT);
 	flappyBird.Init();
+
+	double lag = 0.0;
 	
 	InputManager im;
 	
@@ -28,7 +30,12 @@ int main()
 		//im.Update();
 		flappyBird.ProcessInput();
 		engine.Update();
-		flappyBird.Update();
+		lag += engine.GetDT();
+		while (lag >= (double)Engine::MS_PER_UPDATE)
+		{
+			flappyBird.Update();
+			lag -= (double)Engine::MS_PER_UPDATE;
+		}
 		flappyBird.Render();
 
 		glfwSwapBuffers(engine.GetWindow());
