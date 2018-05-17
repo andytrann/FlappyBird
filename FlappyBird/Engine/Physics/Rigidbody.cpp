@@ -25,7 +25,7 @@ void Rigidbody::Update(GameObject& _object)
 	_object.vel.x *= friction;
 	_object.vel.y += gravity;
 
-	_object.pos += (_object.vel * Engine::GetDT());
+	_object.pos += (_object.vel * Engine::MS_PER_UPDATE);
 }
 
 void Rigidbody::Render(GameObject& _object, SpriteRenderer& _renderer)
